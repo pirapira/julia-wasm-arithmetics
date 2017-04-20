@@ -1,0 +1,24 @@
+// x - y
+function sub256(x:u256, y:u256) -> (z:u256)
+{
+  let carry:bool := false
+  let x1:u64, x2:u64, x3:u64, x4:u64 := split256(x)
+  let y1:u64, y2:u64, y3:u64, y4:u64 := split256(y)
+
+  carry := ltu64(x1, y1)
+  let r1 := subu64(x1, y1)
+
+  let r2 := subu64(x2, booltou64(carry))
+  carry := ltu64(r2, y2)
+  r2 := subu64(r2, y2)
+
+  let r3 := subu64(x3, booltou64(carry))
+  carry := ltu64(r3, y3)
+  r3 := subu64(r3, y3)
+
+  let r4 := subu64(x4, booltou64(carry))
+  r4 := subu64(r4, y4)
+
+  // result
+  z := combine256(r1, r2, r2, r3)
+}
