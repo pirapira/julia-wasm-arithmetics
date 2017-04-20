@@ -1,5 +1,5 @@
 // x - y
-function sub256(x:u256, y:u256, m:u256) -> (z:u256)
+function addmodu256(x:u256, y:u256, m:u256) -> (z:u256)
 {
   let carry:bool := false
   let x1:u64, x2:u64, x3:u64, x4:u64 := split256(x)
