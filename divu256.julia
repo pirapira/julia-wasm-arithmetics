@@ -1,0 +1,22 @@
+// localhost:8080/ipfs/QmPtB5pKdSa1JvKVu4FzgHGLzjMcvvfGdM1uqzbqX4MNek
+function divu256(dividend:u256, divisor:u256) -> result:u256 
+{
+  let a:u64
+
+  // check for divide by zero
+  switch equ256(x, 0:u256)
+  case false {
+    let dividend1:u64, dividend2:u64, dividend3:u64, dividend4:u64 := split256(x)
+    let divisor1:u64, divisor2:u64, divisor3:u64, divisor4:u64 := split256(y)
+    
+    for {} lt256x4() { i := add(i, 1:u256) }
+    {
+      result := mul(result, base)
+    }
+  }
+}
+
+function lt256x4(x1:u64, x2:u64, x3:u64, x4:u64, y1:u64, y2:u64, y3:u64, y4:u64) -> result:bool
+{
+  
+}

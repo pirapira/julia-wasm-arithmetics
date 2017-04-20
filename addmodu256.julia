@@ -1,33 +1,7 @@
 // x - y
 function addmodu256(x:u256, y:u256, m:u256) -> (z:u256)
 {
-  let carry:bool := false
-  let x1:u64, x2:u64, x3:u64, x4:u64 := split256(x)
-  let y1:u64, y2:u64, y3:u64, y4:u64 := split256(y)
-
-  let r1 := addu64(x1, y1)
-  carry := ltu64(r1, x1)
-  // add the carry bit
-  let r2 := addu64(x2, booltou64(carry))
-  carry := ltu64(r2, x2)
-
-  // add the x2 y2
-  r2 := addu64(x2, r2)
-  carry :=  orbool(ltu64(r2, x2), carry)
-
-  // add the carry bit
-  let r3 := addu64(x3, booltou64(carry))
-  carry := ltu64(r3, x3)
-
-  // add the x3 y3
-  r3 := addu64(x3, r3)
-  carry :=  orbool(ltu64(r3, x3), carry)
-
-  // add the carry bit
-  let r4 := addu64(x4, booltou64(carry))
-  carry :=  orbool(ltu64(r4, x4), carry)
-  // add the x4 y4
-  r4 := addu64(x4, r4)
-
-  z := mod320(r1, r2, r3, r4, m)
+  let r:u256, carry:bool = addu256(x, y)
+  let r1:u64, r2:u64, r3:u64, r4:u64 = split256(r)
+  z := mod320(r1, r2, r3, r4, bool2u64(carry), m)
 }
