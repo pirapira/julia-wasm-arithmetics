@@ -20,5 +20,5 @@ function subu256(x:u256, y:u256) -> (z:u256)
   r4 := subu64(r4, y4)
 
   // result
-  z := combine256(r1, r2, r2, r3)
+  z := combine256(r1, r2, r3, r4)
 }

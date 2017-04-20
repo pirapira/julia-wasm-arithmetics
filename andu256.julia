@@ -1,0 +1,13 @@
+function andu256(x:u256, y:u256) -> (z:u256)
+{
+  let x1:u64, x2:u64, x3:u64, x4:u64 := split256(x)
+  let y1:u64, y2:u64, y3:u64, y4:u64 := split256(y)
+
+  let r1 := andu64(x1, y1)
+  let r2 := andu64(x2, y2)
+  let r3 := andu64(x3, y3)
+  let r4 := andu64(x4, y4)
+
+  // result
+  z := combine256(r1, r2, r3, r4)
+}
