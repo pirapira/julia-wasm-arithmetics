@@ -1,0 +1,9 @@
+function eq256(x:u256, y:u256) -> (ret:bool)
+{
+	let x1:u64, x2:u64, x3:u64, x4:u64 := split256(x)
+	let y1:u64, y2:u64, y3:u64, y4:u64 := split256(y)
+
+	// Here we assume that eq64() returns bool and bool can be implicitly typecasted
+	// to wider types. bool32() is an explicit conversion of u32 to bool.
+	ret := bool32(and32(eq64(x1, y1), and32(eq64(x2, y2), and32(eq64(x3, y3), eq64(x4, y4)))))
+}
