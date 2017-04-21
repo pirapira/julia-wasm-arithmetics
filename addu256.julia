@@ -12,7 +12,7 @@ function addu256(x:u256, y:u256) -> (result:u256, carry:bool)
 
   // x2 + y2
   r2 := addu64(r2, y2)
-  carry :=  orbool(ltu64(r2, y2), carry)
+  carry :=  ltu64(r2, y2)
 
   // add the carry bit
   let r3 := addu64(x3, booltou64(carry))
@@ -20,7 +20,7 @@ function addu256(x:u256, y:u256) -> (result:u256, carry:bool)
 
   // x3 + y3
   r3 := addu64(r3, y3)
-  carry :=  orbool(ltu64(r3, y3), carry)
+  carry :=  ltu64(r3, y3)
 
   // add the carry bit
   let r4 := addu64(x4, booltou64(carry))
@@ -28,6 +28,6 @@ function addu256(x:u256, y:u256) -> (result:u256, carry:bool)
   // x4 + y4
   r4 := addu64(r4, y4)
 
-  carry :=  orbool(ltu64(r4, y4), carry)
+  carry :=  ltu64(r4, y4)
   result := combine256(r1, r2, r3, r4)
 }
