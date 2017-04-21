@@ -5,18 +5,75 @@ function divu256(dividend:u256, divisor:u256) -> result:u256
 
   // check for divide by zero
   switch equ256(x, 0:u256)
-  case false {
+  case false:bool {
     let dividend1:u64, dividend2:u64, dividend3:u64, dividend4:u64 := split256(x)
     let divisor1:u64, divisor2:u64, divisor3:u64, divisor4:u64 := split256(y)
+
+    let mask1:u64
+    let mask2:u64
+    let mask3:u64
+    let mask4:u64
+
+    let result1:u64
+    let result2:u64
+    let result3:u64
+    let result4:u64
     
-    for {} lt256x4() { i := add(i, 1:u256) }
+    // align bits
+    for 
+    {}
+    // divisor < dividend
+    lt_256x4(dividend1, dividend2, dividend3, dividend4, divisor1, divisor2, divisor3, divisor4)
+    {} 
     {
-      result := mul(result, base)
+      shiftl_256x4(dividend1, dividend2, dividend3, dividend4, 1:u8)
+      shiftl_256x4(mask1, mask2, mask3, mask4, 1:u8)
+    }
+
+    lt_256x4(dividend1, dividend2, dividend3, dividend4, divisor1, divisor2, divisor3, divisor4)
+
+    for 
+    {}
+    lte_256x4(dividend1, dividend2, dividend3, dividend4, divisor1, divisor2, divisor3, divisor4)
+    {}
+    {
+      dividend1, dividend2, dividend3, dividend4 = sub_256x4(dividend1, dividend2, dividend3, dividend4, divisor1, divisor2, divisor3, divisor4)
+      result1, result2, result3, result4 = add_256x4(result1, result2, result3, result4, mask1, mask2, mask3, mask4)
+      switch eq_256x4(mask1, mask2, mask3, mask4, 0:64, 0:64, 0:64, 0:64)
+        case true:bool {
+          break
+        }
     }
   }
 }
 
-function lt256x4(x1:u64, x2:u64, x3:u64, x4:u64, y1:u64, y2:u64, y3:u64, y4:u64) -> result:bool
+function eq_256x4(x1:u64, x2:u64, x3:u64, x4:u64, y1:u64, y2:u64, y3:u64, y4:u64) -> result:bool
 {
   
+}
+
+function lte_256x4(x1:u64, x2:u64, x3:u64, x4:u64, y1:u64, y2:u64, y3:u64, y4:u64) -> result:bool
+{
+  
+}
+
+function lt_256x4(x1:u64, x2:u64, x3:u64, x4:u64, y1:u64, y2:u64, y3:u64, y4:u64) -> result:bool
+{
+  
+}
+
+function sub_256x4(x1:u64, x2:u64, x3:u64, x4:u64, y1:u64, y2:u64, y3:u64, y4:u64) -> r1:u64, r2:u64, r3:u64, r4:u64
+{
+  
+}
+
+function add_256x4(x1:u64, x2:u64, x3:u64, x4:u64, y1:u64, y2:u64, y3:u64, y4:u64) -> r1:u64, r2:u64, r3:u64, r4:u64
+{
+  
+}
+
+
+function shiftl_256x4(x1:u64, x2:u64, x3:u64, x4:u64, n:u8) -> r1:u64, r2:u64, r3:u64, r4:u64
+{
+
 }
